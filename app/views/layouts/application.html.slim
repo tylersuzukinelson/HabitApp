@@ -11,6 +11,9 @@ html
       h1
         | Habit App 
         small by Tyler Suzuki Nelson
+      - if flash[:notice]
+        .alert.alert-danger(role="alert")
+          =flash[:notice]
       ul.nav.nav-tabs(style="margin-bottom: 10px")
         li.active(role="presentation")
           = link_to "Home", root_path
