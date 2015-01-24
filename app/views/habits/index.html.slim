@@ -1,2 +1,8 @@
-em
-  | ...habits will appear here...
+- @habits.each do |habit|
+  .well
+    h3
+      = link_to habit.title, habit
+      span.pull-right
+        = link_to "Edit", edit_habit_path(habit), class: "btn btn-warning"
+        = link_to "Delete", habit, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure? This is permanent and cannot be undone."}
+    em=habit.description

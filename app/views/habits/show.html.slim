@@ -1,0 +1,8 @@
+h2
+  =@habit.title
+  span.pull-right
+    = link_to "Edit", edit_habit_path(@habit), class: "btn btn-warning"
+    = link_to "Delete", @habit, method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure? This is permanent and cannot be undone."}
+| Interval: #{@habit.interval} hours | Forgiveness Period: #{@habit.forgiveness} hours
+br
+=@habit.description

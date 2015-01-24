@@ -6,6 +6,10 @@ class Habit < ActiveRecord::Base
   validates :forgiveness, numericality: {greater_than_or_equal_to: 0, only_integer: true}
   validate :set_defaults
 
+  def generate_button
+    
+  end
+
   private
 
   def set_defaults
@@ -13,4 +17,5 @@ class Habit < ActiveRecord::Base
     self.current_streak = 0
     self.public = false
   end
+
 end
