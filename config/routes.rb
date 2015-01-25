@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  patch 'habits/:id/increment' => 'habits#increment', as: :increment_habit
   resources :habits do
     resources :logs
   end

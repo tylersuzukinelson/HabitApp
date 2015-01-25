@@ -3,7 +3,7 @@ class HabitsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @habits = current_user.habits
+    @habits = current_user.habits.order("current_streak DESC")
   end
 
   def new
