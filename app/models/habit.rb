@@ -28,35 +28,35 @@ class Habit < ActiveRecord::Base
     if current_streak <= MIN_FOR_YELLOW
       current_color = 'white'
       next_color = 'yellow'
-      size = HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_WHITE) / (MIN_FOR_YELLOW - MIN_FOR_WHITE)
+      size = CENTER_CIRCLE_SIZE + HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_WHITE) / (MIN_FOR_YELLOW - MIN_FOR_WHITE)
     elsif current_streak <= MIN_FOR_ORANGE
       current_color = 'yellow'
       next_color = 'orange'
-      size = HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_YELLOW) / (MIN_FOR_ORANGE - MIN_FOR_YELLOW)
+      size = CENTER_CIRCLE_SIZE + HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_YELLOW) / (MIN_FOR_ORANGE - MIN_FOR_YELLOW)
     elsif current_streak <= MIN_FOR_GREEN
       current_color = 'orange'
       next_color = 'green'
-      size = HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_ORANGE) / (MIN_FOR_GREEN - MIN_FOR_ORANGE)
+      size = CENTER_CIRCLE_SIZE + HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_ORANGE) / (MIN_FOR_GREEN - MIN_FOR_ORANGE)
     elsif current_streak <= MIN_FOR_BLUE
       current_color = 'green'
       next_color = 'blue'
-      size = HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_GREEN) / (MIN_FOR_BLUE - MIN_FOR_GREEN)
+      size = CENTER_CIRCLE_SIZE + HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_GREEN) / (MIN_FOR_BLUE - MIN_FOR_GREEN)
     elsif current_streak <= MIN_FOR_VIOLET
       current_color = 'blue'
       next_color = 'violet'
-      size = HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_BLUE) / (MIN_FOR_VIOLET - MIN_FOR_BLUE)
+      size = CENTER_CIRCLE_SIZE + HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_BLUE) / (MIN_FOR_VIOLET - MIN_FOR_BLUE)
     elsif current_streak <= MIN_FOR_BROWN
       current_color = 'violet'
       next_color = 'brown'
-      size = HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_VIOLET) / (MIN_FOR_BROWN - MIN_FOR_VIOLET)
+      size = CENTER_CIRCLE_SIZE + HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_VIOLET) / (MIN_FOR_BROWN - MIN_FOR_VIOLET)
     elsif current_streak <= MIN_FOR_BLACK
       current_color = 'brown'
       next_color = 'black'
-      size = HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_BROWN) / (MIN_FOR_BLACK - MIN_FOR_BROWN)
+      size = CENTER_CIRCLE_SIZE + HABIT_CIRCLE_SIZE * (current_streak - MIN_FOR_BROWN) / (MIN_FOR_BLACK - MIN_FOR_BROWN)
     else
       current_color = 'black'
       next_color = 'black'
-      size = HABIT_CIRCLE_SIZE
+      size = CENTER_CIRCLE_SIZE + HABIT_CIRCLE_SIZE
     end
 
     button_code = "<div style=\"display: inline-block; width: #{TARGET_CIRCLE_SIZE}px; height: #{TARGET_CIRCLE_SIZE}px; background: #{current_color}; border-radius: 60px;"
