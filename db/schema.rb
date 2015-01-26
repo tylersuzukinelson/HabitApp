@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124003829) do
+ActiveRecord::Schema.define(version: 20150126064434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150124003829) do
     t.integer  "longest_streak"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "turnover_time"
   end
 
   add_index "habits", ["user_id"], name: "index_habits_on_user_id", using: :btree

@@ -2,9 +2,11 @@ class Habit < ActiveRecord::Base
   belongs_to :user
   has_many :logs, dependent: :destroy
   validates :title, presence: true
-  validates :interval, numericality: {greater_than: 0, only_integer: true}
-  validates :forgiveness, numericality: {greater_than_or_equal_to: 0, only_integer: true}
+  validates :interval, presence: true, numericality: {greater_than: 0, only_integer: true}
+  validates :forgiveness, presence: true, numericality: {greater_than_or_equal_to: 0, only_integer: true}
+  validates :turnover_time, presence: true, numericality: {greater_than_or_equal_to: 0, only_integer: true}
   validate :set_defaults
+  validate :valid_turnover
   validate :set_longest_streak
 
   MIN_FOR_WHITE = 0
@@ -59,7 +61,7 @@ class Habit < ActiveRecord::Base
 
     button_code = "<div style=\"display: inline-block; width: #{TARGET_CIRCLE_SIZE}px; height: #{TARGET_CIRCLE_SIZE}px; background: #{current_color}; border-radius: 60px;"
     if current_streak >= longest_streak
-      button_code += " -webkit-box-shadow:0 0 20px #{current_color}; -moz-box-shadow: 0 0 20px #{current_color}; box-shadow:0 0 20px #{current_color};"
+      button_code += " -webkit-box-shadow:0 0 20px #{CENTER_CIRCLE_COLOR}; -moz-box-shadow: 0 0 20px #{CENTER_CIRCLE_COLOR}; box-shadow:0 0 20px #{CENTER_CIRCLE_COLOR};"
     end
     button_code += "\">\n"
     button_code += "\t<div style=\"position:relative; width: #{size}px; height: #{size}px; background: #{next_color}; border-radius: #{(size / 2)}px; top: #{((TARGET_CIRCLE_SIZE / 2) - (size / 2))}px; left: #{((TARGET_CIRCLE_SIZE / 2) - (size / 2))}px;\">\n"
@@ -82,4 +84,9 @@ class Habit < ActiveRecord::Base
     end
   end
 
+  def valid_turnover
+    if turnover_time >= interval
+      self.turnover_time = 0
+    end
+  end
 end

@@ -44,6 +44,25 @@ class HabitsController < ApplicationController
     end
   end
 
+  def increment
+    # TODO Check that turnover time has elapsed
+    @habit = current_user.habits.find params[:id]
+    @log = Log.new
+    @log.habit = @habit
+    @log.user = current_user
+    @log.logged = DateTime.now
+    if @log.save
+      @habit.current_streak = @habit.logs.count
+      if @habit.save
+        redirect_to habits_path
+      else
+        redirect_to habits_path, notice: error_messages
+      end
+    else
+      redirect_to habits_path, notice: @log.errors.full_messages.join('; ')
+    end
+  end
+
   private
 
   def get_habit
@@ -51,7 +70,7 @@ class HabitsController < ApplicationController
   end
 
   def permitted_params
-    params.require(:habit).permit(:title, :description, :interval, :forgiveness)
+    params.require(:habit).permit(:title, :description, :interval, :forgiveness, :turnover_time)
   end
 
   def error_messages
