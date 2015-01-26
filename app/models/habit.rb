@@ -70,6 +70,10 @@ class Habit < ActiveRecord::Base
     return button_code.html_safe
   end
 
+  def turnover_time_not_elapsed
+    "The turnover time has not yet elapsed. (ie. at least #{turnover_time} #{turnover_time == 1 ? "hour" : "hours"} must have elapsed between completions of this habit)"
+  end
+
   private
 
   def set_defaults
