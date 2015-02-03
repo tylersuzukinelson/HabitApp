@@ -60,7 +60,7 @@ class Habit < ActiveRecord::Base
     end
 
     button_code = "<div style=\"display: inline-block; width: #{TARGET_CIRCLE_SIZE}px; height: #{TARGET_CIRCLE_SIZE}px; background: #{current_color}; border-radius: 60px;"
-    if current_streak >= longest_streak
+    if current_streak >= longest_streak && longest_streak > 0
       button_code += " -webkit-box-shadow:0 0 20px #{CENTER_CIRCLE_COLOR}; -moz-box-shadow: 0 0 20px #{CENTER_CIRCLE_COLOR}; box-shadow:0 0 20px #{CENTER_CIRCLE_COLOR};"
     end
     button_code += "\">\n"
